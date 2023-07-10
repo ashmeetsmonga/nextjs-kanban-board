@@ -10,9 +10,26 @@ interface BoardProps {
 
 const Board: React.FC<BoardProps> = ({ state }) => {
 	const tasks = useTaskStore((state) => state.tasks);
+	const draggedTask = useTaskStore((state) => state.draggedTask);
+	const setDraggedTask = useTaskStore((state) => state.setDraggedTask);
+	const moveTask = useTaskStore((state) => state.moveTask);
+
+	const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+	};
+
+	const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		moveTask(draggedTask, state);
+		setDraggedTask(null);
+	};
 
 	return (
-		<div className='bg-[#262626] w-1/3 max-w-[400px] min-h-[500px] text-white p-4 rounded'>
+		<div
+			onDragOver={onDragOver}
+			onDrop={onDrop}
+			className='bg-[#262626] w-1/3 max-w-[400px] min-h-[500px] text-white p-4 rounded'
+		>
 			<h2 className='text-2xl text-white font-bold capitalize'>{state}</h2>
 			<div className='w-full flex flex-col gap-2 mt-5'>
 				{tasks

@@ -12,9 +12,14 @@ interface TaskProps {
 
 const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 	const deleteTask = useTaskStore((state) => state.deleteTask);
+	const setDraggedTask = useTaskStore((state) => state.setDraggedTask);
 
 	return (
-		<div className={`w-full flex flex-col gap-1 rounded bg-[${color}] p-4`}>
+		<div
+			draggable
+			onDragStart={() => setDraggedTask(title)}
+			className={`w-full flex flex-col gap-1 rounded bg-[${color}] p-4 cursor-move`}
+		>
 			<h3 className='font-semibold text-xl'>{title}</h3>
 			<p className='font-light'>{description}</p>
 
