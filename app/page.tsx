@@ -8,7 +8,7 @@ export default function Home() {
 	const openModal = useTaskStore((state) => state.openModal);
 
 	return (
-		<main className='relative flex w-screen min-h-screen flex-col items-center p-24 bg-black'>
+		<main className='relative flex w-screen min-h-screen flex-col items-center p-16 bg-black'>
 			<h1 className='text-6xl text-white font-bold'>Kanban Board</h1>
 			<div className='flex gap-8 w-full justify-center mt-10'>
 				<Board state='todo' />
