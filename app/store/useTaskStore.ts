@@ -4,6 +4,6 @@ interface TaskStoreProps {
 	tasks: Task[];
 }
 
-export const TaskStore = create<TaskStoreProps>((set) => ({
-	tasks: [{ title: "Test Title", description: "Test Description", state: "todo" }],
+export const useTaskStore = create<TaskStoreProps>((set) => ({
+	tasks: [{ title: "Test Title", description: "Test Description", state: "completed" }],
 }));
