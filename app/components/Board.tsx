@@ -18,7 +18,7 @@ const Board: React.FC<BoardProps> = ({ state }) => {
 				{tasks
 					.filter((task) => task.state === state)
 					.map((task, idx) => (
-						<Task key={idx} title={task.title} description={task.description} />
+						<Task key={idx} title={task.title} description={task.description} color={task.color} />
 					))}
 			</div>
 		</div>

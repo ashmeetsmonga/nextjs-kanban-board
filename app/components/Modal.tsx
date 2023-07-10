@@ -95,7 +95,7 @@ const Modal = () => {
 						</div>
 						<button
 							onClick={() => {
-								addTask(title, description, state);
+								addTask(title, description, state, color);
 								closeModal();
 							}}
 							className='bg-[#307FE2] px-4 py-2 mt-5 text-white rounded font-semibold'
