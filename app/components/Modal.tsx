@@ -22,19 +22,20 @@ const Modal = () => {
 					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
 						<h1 className='font-bold text-3xl'>Add New Task</h1>
 						<input
-							className='bg-gray-200 rounded p-3 focus:outline-none'
+							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
 							placeholder='Title'
 							type='text'
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
 						/>
 						<input
-							className='bg-gray-200 rounded p-3 focus:outline-none'
+							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
 							placeholder='Description'
 							type='text'
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
+
 						<div>
 							<h2 className='mb-2'>Select State</h2>
 							<div className='flex gap-2'>
