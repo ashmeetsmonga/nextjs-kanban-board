@@ -14,6 +14,15 @@ const Modal = () => {
 	const [state, setState] = useState("todo");
 	const [color, setColor] = useState("#D93535");
 
+	const handleAddTask = () => {
+		addTask(title, description, state, color);
+		setTitle("");
+		setDescription("");
+		setState("");
+		setColor("#D93535");
+		closeModal();
+	};
+
 	return (
 		<>
 			{isModalOpen && (
@@ -94,15 +103,20 @@ const Modal = () => {
 								</button>
 							</div>
 						</div>
-						<button
-							onClick={() => {
-								addTask(title, description, state, color);
-								closeModal();
-							}}
-							className='bg-[#307FE2] px-4 py-2 mt-5 text-white rounded font-semibold'
-						>
-							Add
-						</button>
+						<div className='flex gap-4 mt-5 justify-center'>
+							<button
+								onClick={handleAddTask}
+								className='bg-[#307FE2] px-4 py-2 text-white rounded font-semibold'
+							>
+								Add
+							</button>
+							<button
+								onClick={closeModal}
+								className='bg-[#D93535] px-4 py-2 text-white rounded font-semibold'
+							>
+								Cancel
+							</button>
+						</div>
 					</div>
 				</div>
 			)}

@@ -17,7 +17,7 @@ export default function Home() {
 			</div>
 			<button
 				onClick={openModal}
-				className='absolute bottom-5 right-5 bg-[#262626] py-4 px-6 rounded-full text-4xl text-white'
+				className='absolute top-5 right-5 bg-[#262626] py-4 px-6 rounded-full text-4xl text-white'
 			>
 				+
 			</button>
