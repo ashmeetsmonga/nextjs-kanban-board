@@ -12,7 +12,15 @@ export default function Home() {
 
 	return (
 		<main className='relative flex w-screen min-h-screen flex-col items-center px-10 py-10 bg-black'>
-			<h1 className='text-6xl text-white self-start font-bold'>Kanban Board</h1>
+			<div className='w-full flex justify-between self-start'>
+				<h1 className='text-6xl text-white font-bold'>Kanban Board</h1>
+				<button
+					onClick={openModal}
+					className='bg-[#262626] py-4 px-6 rounded-full text-4xl text-white'
+				>
+					+
+				</button>
+			</div>
 			<div className='self-start flex gap-2 items-center'>
 				<p className='text-white'>Created by Ashmeet Singh Monga</p>
 				<a href='https://www.github.com/ashmeetsmonga' target='_blank'>
@@ -25,12 +33,6 @@ export default function Home() {
 				<Board state='in progress' />
 				<Board state='completed' />
 			</div>
-			<button
-				onClick={openModal}
-				className='absolute top-5 right-5 bg-[#262626] py-4 px-6 rounded-full text-4xl text-white'
-			>
-				+
-			</button>
 			<Modal />
 			<EditModal />
 		</main>
