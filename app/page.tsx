@@ -2,10 +2,10 @@
 
 import Board from "./components/Board";
 import Modal from "./components/Modal";
-import { useTaskStore } from "./store/useTaskStore";
+import { useModalStore } from "./store/useModalStore";
 
 export default function Home() {
-	const openModal = useTaskStore((state) => state.openModal);
+	const openModal = useModalStore((state) => state.openModal);
 
 	return (
 		<main className='relative flex w-screen min-h-screen flex-col items-center px-10 py-16 bg-black'>

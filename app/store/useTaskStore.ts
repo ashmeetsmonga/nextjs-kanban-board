@@ -2,23 +2,19 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface TaskStoreProps {
-	isModalOpen: boolean;
-	openModal: () => void;
-	closeModal: () => void;
 	tasks: Task[];
 	draggedTask: null | string;
 	addTask: (title: string, description: string, state: string, color: string) => void;
 	deleteTask: (title: string) => void;
 	setDraggedTask: (title: string | null) => void;
 	moveTask: (title: string | null, state: string) => void;
+	editTask: null | Task;
+	setEditTask: (title: string) => void;
 }
 
 export const useTaskStore = create<TaskStoreProps>()(
 	persist(
 		(set) => ({
-			isModalOpen: false,
-			openModal: () => set((prevState) => ({ ...prevState, isModalOpen: true })),
-			closeModal: () => set((prevState) => ({ ...prevState, isModalOpen: false })),
 			tasks: [],
 			draggedTask: null,
 			addTask: (title: string, description: string, state: string, color: string) =>
@@ -32,6 +28,9 @@ export const useTaskStore = create<TaskStoreProps>()(
 						task.title === title ? { ...task, title, state } : task
 					),
 				})),
+			editTask: null,
+			setEditTask: (title: string) =>
+				set((state) => ({ editTask: state.tasks.find((task) => task.title === title) })),
 		}),
 		{
 			name: "kanban-board",
