@@ -38,10 +38,10 @@ const Modal = () => {
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
 						/>
-						<input
+						<textarea
 							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
 							placeholder='Description'
-							type='text'
+							rows={5}
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
