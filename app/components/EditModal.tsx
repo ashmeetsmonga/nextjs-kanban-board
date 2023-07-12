@@ -1,42 +1,44 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTaskStore } from "../store/useTaskStore";
 import { BiCheck } from "react-icons/bi";
 import { useModalStore } from "../store/useModalStore";
 
 const Modal = () => {
-	const isModalOpen = useModalStore((state) => state.isModalOpen);
-	const closeModal = useModalStore((state) => state.closeModal);
-	const addTask = useTaskStore((state) => state.addTask);
+	const isEditModalOpen = useModalStore((state) => state.isEditModalOpen);
+	const closeEditModal = useModalStore((state) => state.closeEditModal);
+	const editTask = useTaskStore((state) => state.editTask);
+	const updateTask = useTaskStore((state) => state.updateTask);
 
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
-	const [state, setState] = useState("todo");
-	const [color, setColor] = useState("#D93535");
+	const [color, setColor] = useState("");
+
+	useEffect(() => {
+		setTitle(editTask?.title as string);
+		setDescription(editTask?.description as string);
+		setColor(editTask?.color as string);
+	}, [editTask]);
 
 	const handleAddTask = () => {
-		addTask(title, description, state, color);
-		setTitle("");
-		setDescription("");
-		setState("");
-		setColor("#D93535");
-		closeModal();
+		updateTask(title, description, color);
+		closeEditModal();
 	};
 
 	return (
 		<>
-			{isModalOpen && (
+			{isEditModalOpen && (
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
 					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
-						<h1 className='font-bold text-3xl'>Add New Task</h1>
+						<h1 className='font-bold text-3xl'>Edit Task</h1>
 						<input
-							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
+							className='bg-gray-300 rounded p-3 outline-none focus:outline-none disabled:text-gray-500'
 							placeholder='Title'
 							type='text'
+							disabled
 							value={title}
-							onChange={(e) => setTitle(e.target.value)}
 						/>
 						<input
 							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
@@ -45,44 +47,6 @@ const Modal = () => {
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
-
-						<div>
-							<h2 className='mb-2'>Select State</h2>
-							<div className='flex gap-2'>
-								<button
-									onClick={() => setState("todo")}
-									className={`px-4 py-2 rounded ${
-										state === "todo" ? "bg-[#D93535] text-white" : "bg-gray-200"
-									} `}
-								>
-									Todo
-								</button>
-								<button
-									onClick={() => setState("waiting")}
-									className={`px-4 py-2 rounded ${
-										state === "waiting" ? "bg-[#307FE2] text-white" : "bg-gray-200"
-									} `}
-								>
-									Waiting
-								</button>
-								<button
-									onClick={() => setState("in progress")}
-									className={`px-4 py-2 rounded ${
-										state === "in progress" ? "bg-[#6A6DCD] text-white" : "bg-gray-200"
-									} `}
-								>
-									In Progress
-								</button>
-								<button
-									onClick={() => setState("completed")}
-									className={`px-4 py-2 rounded ${
-										state === "completed" ? "bg-[#00A88B] text-white" : "bg-gray-200"
-									} `}
-								>
-									Completed
-								</button>
-							</div>
-						</div>
 						<div>
 							<h2 className='mb-2'>Select Color</h2>
 							<div className='flex gap-2'>
@@ -120,7 +84,7 @@ const Modal = () => {
 								Add
 							</button>
 							<button
-								onClick={closeModal}
+								onClick={closeEditModal}
 								className='bg-[#D93535] px-4 py-2 text-white rounded font-semibold'
 							>
 								Cancel

@@ -2,6 +2,8 @@
 
 import Board from "./components/Board";
 import Modal from "./components/Modal";
+import EditModal from "./components/EditModal";
+
 import { useModalStore } from "./store/useModalStore";
 
 export default function Home() {
@@ -23,6 +25,7 @@ export default function Home() {
 				+
 			</button>
 			<Modal />
+			<EditModal />
 		</main>
 	);
 }

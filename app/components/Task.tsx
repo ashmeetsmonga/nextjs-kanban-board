@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { useModalStore } from "../store/useModalStore";
 import { useTaskStore } from "../store/useTaskStore";
 
 interface TaskProps {
@@ -13,6 +14,13 @@ interface TaskProps {
 const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 	const deleteTask = useTaskStore((state) => state.deleteTask);
 	const setDraggedTask = useTaskStore((state) => state.setDraggedTask);
+	const setEditTask = useTaskStore((state) => state.setEditTask);
+	const openEditModal = useModalStore((state) => state.openEditModal);
+
+	const handleEdit = () => {
+		setEditTask(title);
+		openEditModal();
+	};
 
 	return (
 		<div
@@ -23,11 +31,11 @@ const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 			<h3 className='font-semibold text-xl'>{title}</h3>
 			<p className='font-light'>{description}</p>
 
-			<AiFillDelete
-				onClick={() => deleteTask(title)}
-				className='ml-auto cursor-pointer'
-				size={25}
-			/>
+			<div className='flex gap-1 ml-auto'>
+				<AiFillEdit onClick={handleEdit} className='cursor-pointer' size={25} />
+
+				<AiFillDelete onClick={() => deleteTask(title)} className='cursor-pointer' size={25} />
+			</div>
 		</div>
 	);
 };

@@ -10,6 +10,7 @@ interface TaskStoreProps {
 	moveTask: (title: string | null, state: string) => void;
 	editTask: null | Task;
 	setEditTask: (title: string) => void;
+	updateTask: (title: string, description: string, color: string) => void;
 }
 
 export const useTaskStore = create<TaskStoreProps>()(
@@ -31,6 +32,12 @@ export const useTaskStore = create<TaskStoreProps>()(
 			editTask: null,
 			setEditTask: (title: string) =>
 				set((state) => ({ editTask: state.tasks.find((task) => task.title === title) })),
+			updateTask: (title: string, description: string, color: string) =>
+				set((prevState) => ({
+					tasks: prevState.tasks.map((task) =>
+						task.title === title ? { ...task, description, color } : task
+					),
+				})),
 		}),
 		{
 			name: "kanban-board",
