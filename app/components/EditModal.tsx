@@ -33,7 +33,7 @@ const Modal = () => {
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
 					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
-						<h1 className='font-bold text-3xl'>{title}</h1>
+						<h1 className='text-3xl'>{title}</h1>
 
 						<textarea
 							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
@@ -72,15 +72,12 @@ const Modal = () => {
 							</div>
 						</div>
 						<div className='flex gap-4 mt-5 justify-center'>
-							<button
-								onClick={handleAddTask}
-								className='bg-[#00A88B] px-4 py-2 text-white rounded font-semibold'
-							>
+							<button onClick={handleAddTask} className='bg-[#00A88B] px-4 py-2 text-white rounded'>
 								Edit
 							</button>
 							<button
 								onClick={closeEditModal}
-								className='bg-[#D93535] px-4 py-2 text-white rounded font-semibold'
+								className='bg-[#D93535] px-4 py-2 text-white rounded'
 							>
 								Cancel
 							</button>

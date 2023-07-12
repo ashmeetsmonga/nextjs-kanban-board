@@ -13,7 +13,7 @@ export default function Home() {
 	return (
 		<main className='relative flex w-screen min-h-screen flex-col items-center px-10 py-10 bg-black'>
 			<div className='w-full flex justify-between self-start'>
-				<h1 className='text-6xl text-white font-bold'>Kanban Board</h1>
+				<h1 className='text-6xl text-white font-semibold'>Kanban Board</h1>
 				<button
 					onClick={openModal}
 					className='bg-[#262626] py-4 px-6 rounded-full text-4xl text-white'

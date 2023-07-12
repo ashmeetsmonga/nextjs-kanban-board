@@ -1,9 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import ClientOnly from "./components/ClientOnly";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
 	title: "Kanban Board",
@@ -13,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`${inter.className} overflow-x-hidden`}>
+			<body className={`${poppins.className} overflow-x-hidden`}>
 				<ClientOnly>{children}</ClientOnly>
 			</body>
 		</html>
