@@ -29,7 +29,14 @@ const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 			className={`w-full flex flex-col gap-1 rounded bg-[${color}] p-4 cursor-move`}
 		>
 			<h3 className='font-semibold text-xl'>{title}</h3>
-			<p className='font-light'>{description}</p>
+
+			<div className='flex flex-col mt-1'>
+				{description.split("\n").map((desc, idx) => (
+					<p key={idx} className='font-light'>
+						{desc}
+					</p>
+				))}
+			</div>
 
 			<div className='flex gap-1 ml-auto'>
 				<AiFillEdit onClick={handleEdit} className='cursor-pointer' size={25} />

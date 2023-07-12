@@ -22,6 +22,7 @@ const Modal = () => {
 	}, [editTask]);
 
 	const handleAddTask = () => {
+		console.log(description);
 		updateTask(title, description, color);
 		closeEditModal();
 	};
@@ -32,18 +33,12 @@ const Modal = () => {
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
 					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
-						<h1 className='font-bold text-3xl'>Edit Task</h1>
-						<input
-							className='bg-gray-300 rounded p-3 outline-none focus:outline-none disabled:text-gray-500'
-							placeholder='Title'
-							type='text'
-							disabled
-							value={title}
-						/>
-						<input
+						<h1 className='font-bold text-3xl'>{title}</h1>
+
+						<textarea
 							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
 							placeholder='Description'
-							type='text'
+							rows={10}
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
@@ -79,9 +74,9 @@ const Modal = () => {
 						<div className='flex gap-4 mt-5 justify-center'>
 							<button
 								onClick={handleAddTask}
-								className='bg-[#307FE2] px-4 py-2 text-white rounded font-semibold'
+								className='bg-[#00A88B] px-4 py-2 text-white rounded font-semibold'
 							>
-								Add
+								Edit
 							</button>
 							<button
 								onClick={closeEditModal}
