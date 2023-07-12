@@ -38,7 +38,7 @@ const Board: React.FC<BoardProps> = ({ state }) => {
 			onDragOver={onDragOver}
 			onDrop={onDrop}
 			onDragLeave={onDragLeave}
-			className={`bg-[#262626] w-1/3 max-w-[400px] min-h-[500px] text-white p-4 rounded ${
+			className={`bg-[#262626] w-1/3 max-w-[400px] min-h-[200px] text-white p-4 rounded ${
 				drop ? "border-2 border-gray-300 border-dashed" : "border-2 border-transparent"
 			}`}
 		>

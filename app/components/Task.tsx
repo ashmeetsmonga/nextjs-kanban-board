@@ -4,6 +4,7 @@ import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { useModalStore } from "../store/useModalStore";
 import { useTaskStore } from "../store/useTaskStore";
+import { TbPointFilled } from "react-icons/tb";
 
 interface TaskProps {
 	title: string;
@@ -32,7 +33,8 @@ const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 
 			<div className='flex flex-col mt-1'>
 				{description.split("\n").map((desc, idx) => (
-					<p key={idx} className='font-light'>
+					<p key={idx} className='flex items-center font-light'>
+						<TbPointFilled />
 						{desc}
 					</p>
 				))}
