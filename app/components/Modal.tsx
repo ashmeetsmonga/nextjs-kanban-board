@@ -57,6 +57,14 @@ const Modal = () => {
 									Todo
 								</button>
 								<button
+									onClick={() => setState("waiting")}
+									className={`px-4 py-2 rounded ${
+										state === "waiting" ? "bg-[#307FE2] text-white" : "bg-gray-200"
+									} `}
+								>
+									Waiting
+								</button>
+								<button
 									onClick={() => setState("in progress")}
 									className={`px-4 py-2 rounded ${
 										state === "in progress" ? "bg-[#6A6DCD] text-white" : "bg-gray-200"
