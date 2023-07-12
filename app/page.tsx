@@ -16,7 +16,7 @@ export default function Home() {
 				<h1 className='text-6xl text-white font-semibold'>Kanban Board</h1>
 				<button
 					onClick={openModal}
-					className='bg-[#262626] py-4 px-6 rounded-full text-4xl text-white'
+					className='bg-[#262626] py-2 px-5 flex justify-center items-center rounded-full text-3xl text-white'
 				>
 					+
 				</button>
