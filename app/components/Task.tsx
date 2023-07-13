@@ -27,7 +27,7 @@ const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 		<div
 			draggable
 			onDragStart={() => setDraggedTask(title)}
-			className={`w-full flex flex-col gap-1 rounded bg-[${color}] p-4 cursor-move`}
+			className={`w-full flex flex-col gap-1 rounded bg-[${color}] p-4 cursor-move shadow hover:shadow-lg hover:scale-105 transition-all`}
 		>
 			<h3 className='font-semibold text-xl'>{title}</h3>
 

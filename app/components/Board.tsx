@@ -43,7 +43,7 @@ const Board: React.FC<BoardProps> = ({ state }) => {
 			}`}
 		>
 			<h2 className='text-2xl text-white capitalize'>{state}</h2>
-			<div className='w-full flex flex-col gap-2 mt-5'>
+			<div className='w-full flex flex-col gap-3 mt-5'>
 				{tasks
 					.filter((task) => task.state === state)
 					.map((task, idx) => (
