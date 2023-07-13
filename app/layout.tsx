@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import ClientOnly from "./components/ClientOnly";
+import ToasterProvider from "./providers/ToasterProvider";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -17,7 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<body className={`${poppins.className} overflow-x-hidden`}>
-				<ClientOnly>{children}</ClientOnly>
+				<ClientOnly>
+					<ToasterProvider />
+					{children}
+				</ClientOnly>
 			</body>
 		</html>
 	);
