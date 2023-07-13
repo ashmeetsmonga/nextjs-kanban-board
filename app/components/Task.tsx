@@ -32,17 +32,17 @@ const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 			<h3 className='font-semibold text-xl'>{title}</h3>
 
 			<div className='flex flex-col gap-0.5 mt-1'>
-				{description.split("\n").map((desc, idx) => (
-					<p key={idx} className='flex gap-0.5 font-light text-sm'>
-						<TbPointFilled className='mt-1 flex-shrink-0' />
-						{desc}
-					</p>
-				))}
+				{description &&
+					description.split("\n").map((desc, idx) => (
+						<p key={idx} className='flex gap-0.5 font-light text-sm'>
+							<TbPointFilled className='mt-1 flex-shrink-0' />
+							{desc}
+						</p>
+					))}
 			</div>
 
 			<div className='flex gap-1 mt-1 ml-auto'>
 				<AiFillEdit onClick={handleEdit} className='cursor-pointer' size={25} />
-
 				<AiFillDelete onClick={() => deleteTask(title)} className='cursor-pointer' size={25} />
 			</div>
 		</div>
