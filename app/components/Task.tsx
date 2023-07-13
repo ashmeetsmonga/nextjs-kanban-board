@@ -41,7 +41,7 @@ const Task: React.FC<TaskProps> = ({ title, description, color }) => {
 			</div>
 
 			<div className='flex gap-1 mt-1 ml-auto'>
-				<AiFillEdit onClick={handleEdit} className='cursor-pointer' size={25} />
+				<AiFillEdit onClick={handleEdit} className='flex-shrink-0 cursor-pointer' size={25} />
 
 				<AiFillDelete onClick={() => deleteTask(title)} className='cursor-pointer' size={25} />
 			</div>
