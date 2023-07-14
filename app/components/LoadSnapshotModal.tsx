@@ -41,7 +41,7 @@ const LoadSnapshotModal = () => {
 						</p>
 						<p className='text-red-500'>
 							Make sure to save the current snapshot. Loading any other snapshot would lose the
-							current day's tasks.
+							current day&apos;s tasks.
 						</p>
 
 						<input
