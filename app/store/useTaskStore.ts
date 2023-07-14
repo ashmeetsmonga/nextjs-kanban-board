@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 interface TaskStoreProps {
 	tasks: Task[];
 	draggedTask: null | string;
+	setTasks: (tasks: Task[]) => void;
 	addTask: (title: string, description: string, state: string, color: string) => void;
 	deleteTask: (title: string) => void;
 	setDraggedTask: (title: string | null) => void;
@@ -18,6 +19,7 @@ export const useTaskStore = create<TaskStoreProps>()(
 		(set) => ({
 			tasks: [],
 			draggedTask: null,
+			setTasks: (tasks: Task[]) => set({ tasks }),
 			addTask: (title: string, description: string, state: string, color: string) =>
 				set((prevState) => ({ tasks: [...prevState.tasks, { title, description, state, color }] })),
 			deleteTask: (title: string) =>

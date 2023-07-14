@@ -17,8 +17,7 @@ export default function Home() {
 
 	const saveSnapshot = () => {
 		let toastID = toast.loading("Saving snapshot");
-		const date = new Date();
-		const key = `${date.getDate()}|${date.getMonth()}|${date.getFullYear()}`;
+		const key = new Date().toISOString().substring(0, 10);
 		set(key, JSON.stringify(tasks))
 			.then(() => toast.success("Snapshot saved", { id: toastID }))
 			.catch(() => toast.error("Error in saving snapshot", { id: toastID }));

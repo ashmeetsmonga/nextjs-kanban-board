@@ -1,30 +1,30 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useTaskStore } from "../store/useTaskStore";
-import { BiCheck } from "react-icons/bi";
+import React, { useState } from "react";
 import { useModalStore } from "../store/useModalStore";
+import { toast } from "react-hot-toast";
+import { get } from "idb-keyval";
+import { useTaskStore } from "../store/useTaskStore";
 
 const LoadSnapshotModal = () => {
 	const isLoadSnapshotModalOpen = useModalStore((state) => state.isLoadSnapshotModalOpen);
-	const closeEditModal = useModalStore((state) => state.closeEditModal);
-	const editTask = useTaskStore((state) => state.editTask);
-	const updateTask = useTaskStore((state) => state.updateTask);
+	const closeLoadSnapshotModal = useModalStore((state) => state.closeLoadSnapshotModal);
+	const setTasks = useTaskStore((state) => state.setTasks);
 
-	const [title, setTitle] = useState("");
-	const [description, setDescription] = useState("");
-	const [color, setColor] = useState("");
+	const [date, setDate] = useState("");
 
-	useEffect(() => {
-		setTitle(editTask?.title as string);
-		setDescription(editTask?.description as string);
-		setColor(editTask?.color as string);
-	}, [editTask]);
-
-	const handleAddTask = () => {
-		console.log(description);
-		updateTask(title, description, color);
-		closeEditModal();
+	const handleLoadSnapshot = () => {
+		if (!date) return toast.error("Please select a date");
+		const toastID = toast.loading("Loading snapshot");
+		const key = date;
+		get(key)
+			.then((snapshot) => {
+				if (!snapshot) return toast.error("No snapshot present for chosen date", { id: toastID });
+				setTasks(JSON.parse(snapshot));
+				toast.success("Snapshot loaded", { id: toastID });
+			})
+			.catch(() => toast.error("Error in loading snapshot", { id: toastID }))
+			.finally(() => closeLoadSnapshotModal());
 	};
 
 	return (
@@ -33,50 +33,34 @@ const LoadSnapshotModal = () => {
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
 					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
-						<h1 className='text-3xl'>{title}</h1>
+						<h1 className='text-3xl'>Load Snapshot</h1>
+						<p>A snapshot is the list of current tasks present.</p>
+						<p>
+							You can load snapshot from any day to get its tasks. Choose the date and click on Load
+							Snapshot to load the snapshot
+						</p>
+						<p className='text-red-500'>
+							Make sure to save the current snapshot. Loading any other snapshot would lose the
+							current day's tasks.
+						</p>
 
-						<textarea
+						<input
 							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
-							placeholder='Description'
-							rows={10}
-							value={description}
-							onChange={(e) => setDescription(e.target.value)}
+							type='date'
+							value={date}
+							max={new Date().toISOString().substring(0, 10)}
+							onChange={(e) => setDate(e.target.value)}
 						/>
-						<div>
-							<h2 className='mb-2'>Select Color</h2>
-							<div className='flex gap-2'>
-								<button
-									onClick={() => setColor("#D93535")}
-									className='flex justify-center items-center w-8 h-8 bg-[#D93535] rounded-full'
-								>
-									{color === "#D93535" && <BiCheck size={25} color='white' />}
-								</button>
-								<button
-									onClick={() => setColor("#00A88B")}
-									className='flex justify-center items-center w-8 h-8 bg-[#00A88B] rounded-full'
-								>
-									{color === "#00A88B" && <BiCheck size={25} color='white' />}
-								</button>
-								<button
-									onClick={() => setColor("#6A6DCD")}
-									className='flex justify-center items-center w-8 h-8 bg-[#6A6DCD] rounded-full'
-								>
-									{color === "#6A6DCD" && <BiCheck size={25} color='white' />}
-								</button>
-								<button
-									onClick={() => setColor("#307FE2")}
-									className='flex justify-center items-center w-8 h-8 bg-[#307FE2] rounded-full'
-								>
-									{color === "#307FE2" && <BiCheck size={25} color='white' />}
-								</button>
-							</div>
-						</div>
+
 						<div className='flex gap-4 mt-5 justify-center'>
-							<button onClick={handleAddTask} className='bg-[#00A88B] px-4 py-2 text-white rounded'>
-								Edit
+							<button
+								onClick={handleLoadSnapshot}
+								className='bg-[#00A88B] px-4 py-2 text-white rounded'
+							>
+								Load Snapshot
 							</button>
 							<button
-								onClick={closeEditModal}
+								onClick={closeLoadSnapshotModal}
 								className='bg-[#D93535] px-4 py-2 text-white rounded'
 							>
 								Cancel
