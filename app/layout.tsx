@@ -15,6 +15,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
 	title: "Kanban Board",
 	description: "Created By Ashmeet Singh Monga",
+	viewport: null,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
