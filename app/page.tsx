@@ -1,14 +1,13 @@
 "use client";
 
 import Board from "./components/Board";
-import Modal from "./components/Modal";
-import EditModal from "./components/EditModal";
 import { AiFillGithub } from "react-icons/ai";
 import { set } from "idb-keyval";
 
 import { useModalStore } from "./store/useModalStore";
 import { useTaskStore } from "./store/useTaskStore";
 import { toast } from "react-hot-toast";
+import moment from "moment";
 
 export default function Home() {
 	const openModal = useModalStore((state) => state.openModal);
@@ -17,7 +16,7 @@ export default function Home() {
 
 	const saveSnapshot = () => {
 		let toastID = toast.loading("Saving snapshot");
-		const key = new Date().toISOString().substring(0, 10);
+		const key = moment().format("DD-MM-YYYY");
 		set(key, JSON.stringify(tasks))
 			.then(() => toast.success("Snapshot saved", { id: toastID }))
 			.catch(() => toast.error("Error in saving snapshot", { id: toastID }));

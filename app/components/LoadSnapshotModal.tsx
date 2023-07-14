@@ -5,6 +5,7 @@ import { useModalStore } from "../store/useModalStore";
 import { toast } from "react-hot-toast";
 import { get } from "idb-keyval";
 import { useTaskStore } from "../store/useTaskStore";
+import moment from "moment";
 
 const LoadSnapshotModal = () => {
 	const isLoadSnapshotModalOpen = useModalStore((state) => state.isLoadSnapshotModalOpen);
@@ -16,7 +17,8 @@ const LoadSnapshotModal = () => {
 	const handleLoadSnapshot = () => {
 		if (!date) return toast.error("Please select a date");
 		const toastID = toast.loading("Loading snapshot");
-		const key = date;
+		const key = moment(date).format("DD-MM-YYYY");
+		console.log(key);
 		get(key)
 			.then((snapshot) => {
 				if (!snapshot) return toast.error("No snapshot present for chosen date", { id: toastID });
@@ -48,7 +50,7 @@ const LoadSnapshotModal = () => {
 							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
 							type='date'
 							value={date}
-							max={new Date().toISOString().substring(0, 10)}
+							max={new Date().toLocaleString("en-IN").substring(0, 10)}
 							onChange={(e) => setDate(e.target.value)}
 						/>
 
