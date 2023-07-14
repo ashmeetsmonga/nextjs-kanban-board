@@ -5,8 +5,8 @@ import { useTaskStore } from "../store/useTaskStore";
 import { BiCheck } from "react-icons/bi";
 import { useModalStore } from "../store/useModalStore";
 
-const EditModal = () => {
-	const isEditModalOpen = useModalStore((state) => state.isEditModalOpen);
+const LoadSnapshotModal = () => {
+	const isLoadSnapshotModalOpen = useModalStore((state) => state.isLoadSnapshotModalOpen);
 	const closeEditModal = useModalStore((state) => state.closeEditModal);
 	const editTask = useTaskStore((state) => state.editTask);
 	const updateTask = useTaskStore((state) => state.updateTask);
@@ -29,7 +29,7 @@ const EditModal = () => {
 
 	return (
 		<>
-			{isEditModalOpen && (
+			{isLoadSnapshotModalOpen && (
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
 					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
@@ -89,4 +89,4 @@ const EditModal = () => {
 	);
 };
 
-export default EditModal;
+export default LoadSnapshotModal;

@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import ClientOnly from "./components/ClientOnly";
 import ToasterProvider from "./providers/ToasterProvider";
+import LoadSnapshotModal from "./components/LoadSnapshotModal";
+import Modal from "./components/Modal";
+import EditModal from "./components/EditModal";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -21,6 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<ClientOnly>
 					<ToasterProvider />
 					{children}
+					<Modal />
+					<EditModal />
+					<LoadSnapshotModal />
 				</ClientOnly>
 			</body>
 		</html>

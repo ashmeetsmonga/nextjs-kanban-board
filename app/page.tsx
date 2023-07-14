@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 
 export default function Home() {
 	const openModal = useModalStore((state) => state.openModal);
+	const openLoadSnapshotModal = useModalStore((state) => state.openLoadSnapshotModal);
 	const tasks = useTaskStore((state) => state.tasks);
 
 	const saveSnapshot = () => {
@@ -37,6 +38,12 @@ export default function Home() {
 					<button onClick={saveSnapshot} className='bg-[#262626] px-4 py-2 text-white rounded-xl'>
 						Save Snapshot
 					</button>
+					<button
+						onClick={openLoadSnapshotModal}
+						className='bg-[#262626] px-4 py-2 text-white rounded-xl'
+					>
+						Load Snapshot
+					</button>
 				</div>
 			</div>
 			<div className='self-start flex gap-2 items-center'>
@@ -51,8 +58,6 @@ export default function Home() {
 				<Board state='in progress' />
 				<Board state='completed' />
 			</div>
-			<Modal />
-			<EditModal />
 		</main>
 	);
 }

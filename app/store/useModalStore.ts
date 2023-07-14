@@ -7,6 +7,9 @@ interface ModalStoreProps {
 	isEditModalOpen: boolean;
 	openEditModal: () => void;
 	closeEditModal: () => void;
+	isLoadSnapshotModalOpen: boolean;
+	openLoadSnapshotModal: () => void;
+	closeLoadSnapshotModal: () => void;
 }
 
 export const useModalStore = create<ModalStoreProps>((set) => ({
@@ -16,4 +19,7 @@ export const useModalStore = create<ModalStoreProps>((set) => ({
 	isEditModalOpen: false,
 	openEditModal: () => set((prevState) => ({ isEditModalOpen: true })),
 	closeEditModal: () => set((prevState) => ({ isEditModalOpen: false })),
+	isLoadSnapshotModalOpen: false,
+	openLoadSnapshotModal: () => set((prevState) => ({ isLoadSnapshotModalOpen: true })),
+	closeLoadSnapshotModal: () => set((prevState) => ({ isLoadSnapshotModalOpen: false })),
 }));
