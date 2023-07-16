@@ -7,7 +7,7 @@ interface TaskStoreProps {
 	draggedTask: null | string;
 	setTasks: (tasks: Task[]) => void;
 	addTask: (title: string, description: string, state: string, color: string) => void;
-	deleteTask: (title: string) => void;
+	deleteTask: (id: string) => void;
 	setDraggedTask: (title: string | null) => void;
 	moveTask: (id: string | null, state: string) => void;
 	editTask: null | Task;
@@ -25,8 +25,8 @@ export const useTaskStore = create<TaskStoreProps>()(
 				set((prevState) => ({
 					tasks: [...prevState.tasks, { id: uuidv4(), title, description, state, color }],
 				})),
-			deleteTask: (title: string) =>
-				set((state) => ({ tasks: state.tasks.filter((task) => task.title !== title) })),
+			deleteTask: (id: string) =>
+				set((state) => ({ tasks: state.tasks.filter((task) => task.id !== id) })),
 			setDraggedTask: (title: string | null) => set(() => ({ draggedTask: title })),
 			moveTask: (id: string | null, state: string) =>
 				set((prevState) => ({
