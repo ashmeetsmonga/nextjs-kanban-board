@@ -17,7 +17,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
 	const openEditModal = useModalStore((state) => state.openEditModal);
 
 	const handleEdit = () => {
-		setEditTask(task.title);
+		setEditTask(task.id);
 		openEditModal();
 	};
 

@@ -23,7 +23,7 @@ const EditModal = () => {
 
 	const handleAddTask = () => {
 		console.log(description);
-		updateTask(title, description, color);
+		updateTask(editTask?.id as string, title, description, color);
 		closeEditModal();
 	};
 
@@ -72,12 +72,15 @@ const EditModal = () => {
 							</div>
 						</div>
 						<div className='flex gap-4 mt-5 justify-center'>
-							<button onClick={handleAddTask} className='bg-[#00A88B] px-4 py-2 text-white rounded'>
+							<button
+								onClick={handleAddTask}
+								className='bg-[#00A88B] px-4 py-2 text-white rounded-lg'
+							>
 								Edit
 							</button>
 							<button
 								onClick={closeEditModal}
-								className='bg-[#D93535] px-4 py-2 text-white rounded'
+								className='bg-[#D93535] px-4 py-2 text-white rounded-lg'
 							>
 								Cancel
 							</button>

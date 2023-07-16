@@ -9,10 +9,10 @@ interface TaskStoreProps {
 	addTask: (title: string, description: string, state: string, color: string) => void;
 	deleteTask: (title: string) => void;
 	setDraggedTask: (title: string | null) => void;
-	moveTask: (id: string, state: string) => void;
+	moveTask: (id: string | null, state: string) => void;
 	editTask: null | Task;
-	setEditTask: (title: string) => void;
-	updateTask: (title: string, description: string, color: string) => void;
+	setEditTask: (id: string) => void;
+	updateTask: (id: string, title: string, description: string, color: string) => void;
 }
 
 export const useTaskStore = create<TaskStoreProps>()(
@@ -28,17 +28,17 @@ export const useTaskStore = create<TaskStoreProps>()(
 			deleteTask: (title: string) =>
 				set((state) => ({ tasks: state.tasks.filter((task) => task.title !== title) })),
 			setDraggedTask: (title: string | null) => set(() => ({ draggedTask: title })),
-			moveTask: (id: string, state: string) =>
+			moveTask: (id: string | null, state: string) =>
 				set((prevState) => ({
-					tasks: prevState.tasks.map((task) => (task.id === id ? { ...task, state } : task)),
+					tasks: prevState.tasks.map((task) => (id && task.id === id ? { ...task, state } : task)),
 				})),
 			editTask: null,
-			setEditTask: (title: string) =>
-				set((state) => ({ editTask: state.tasks.find((task) => task.title === title) })),
-			updateTask: (title: string, description: string, color: string) =>
+			setEditTask: (id: string) =>
+				set((state) => ({ editTask: state.tasks.find((task) => task.id === id) })),
+			updateTask: (id: string, _title: string, description: string, color: string) =>
 				set((prevState) => ({
 					tasks: prevState.tasks.map((task) =>
-						task.title === title ? { ...task, description, color } : task
+						task.id === id ? { ...task, description, color } : task
 					),
 				})),
 		}),
