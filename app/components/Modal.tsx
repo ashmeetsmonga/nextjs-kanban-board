@@ -18,8 +18,8 @@ const Modal = () => {
 	const [color, setColor] = useState("#D93535");
 
 	const handleAddTask = () => {
-		const taskTitleIndex = tasks.findIndex((task) => task.title === title);
-		if (taskTitleIndex !== -1) return toast.error("Task title already present");
+		// const taskTitleIndex = tasks.findIndex((task) => task.title === title);
+		// if (taskTitleIndex !== -1) return toast.error("Task title already present");
 		addTask(title, description, state, color);
 		setTitle("");
 		setDescription("");
@@ -37,7 +37,7 @@ const Modal = () => {
 						<h1 className='text-3xl'>Add New Task</h1>
 						<input
 							className='bg-gray-200 rounded-lg p-3 outline-none focus:outline-none'
-							placeholder='Title * (Cannot be same as of other tasks)'
+							placeholder='Title *'
 							type='text'
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
