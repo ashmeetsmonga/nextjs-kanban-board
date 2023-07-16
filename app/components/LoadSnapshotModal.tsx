@@ -34,7 +34,7 @@ const LoadSnapshotModal = () => {
 			{isLoadSnapshotModalOpen && (
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
-					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
+					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded-lg z-10'>
 						<h1 className='text-3xl'>Load Snapshot</h1>
 						<p>A snapshot is the list of current tasks present.</p>
 						<p>
@@ -47,7 +47,7 @@ const LoadSnapshotModal = () => {
 						</p>
 
 						<input
-							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
+							className='bg-gray-200 rounded-lg p-3 outline-none focus:outline-none'
 							type='date'
 							value={date}
 							max={new Date().toLocaleString("en-IN").substring(0, 10)}

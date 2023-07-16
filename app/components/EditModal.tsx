@@ -32,11 +32,11 @@ const EditModal = () => {
 			{isEditModalOpen && (
 				<div className='absolute flex justify-center items-center w-full h-screen top-0 left-0'>
 					<div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50'></div>
-					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded z-10'>
+					<div className='bg-white flex flex-col gap-5 w-[500px] p-10 rounded-lg z-10'>
 						<h1 className='text-3xl'>{title}</h1>
 
 						<textarea
-							className='bg-gray-200 rounded p-3 outline-none focus:outline-none'
+							className='bg-gray-200 rounded-lg p-3 outline-none focus:outline-none'
 							placeholder='Description'
 							rows={10}
 							value={description}
